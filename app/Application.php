@@ -4,6 +4,7 @@ namespace app;
 
 use hmerritt\Imdb;
 use App\Movie;
+use Carbon\Carbon;
 
 class Application
 {
@@ -24,6 +25,8 @@ class Application
 
     public function showResult(Movie $movie): void
     {
-        echo $movie->getTitle() . "\n" . $movie->getYear() . "\n";
+        $now = (new Carbon())->now();
+
+        echo $movie->getTitle() . "\ncame out " . $now->diffInYears(Carbon::parse($movie->getYear() . '-01-01')) . " years ago\n";
     }
 }
